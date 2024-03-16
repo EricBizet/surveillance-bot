@@ -1,1 +1,1 @@
-docker run -it sg:latest
+docker run -it -v./output:/inference/output sg:latest
