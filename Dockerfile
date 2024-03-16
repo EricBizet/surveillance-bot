@@ -1,5 +1,5 @@
 ARG DOCKER_IMAGE_TAG=11.3.1-devel-ubuntu20.04
-FROM nvidia/cuda:${DOCKER_IMAGE_TAG} AS Build
+FROM nvidia/cuda:${DOCKER_IMAGE_TAG} AS build
 
 ARG SG_VERSION=3.6.1
 ARG DEBIAN_FRONTEND=noninteractive
@@ -21,4 +21,4 @@ FROM python:3.12.2-slim-bookworm
 COPY ./requirements_run.txt ./requirements.txt
 RUN pip install -r requirements.txt
 
-COPY --from=build ./*.onnx ./
+COPY --from=build /SG/*.onnx ./
