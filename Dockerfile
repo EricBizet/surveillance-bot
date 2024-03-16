@@ -18,7 +18,15 @@ RUN python export_onnx.py
 
 FROM python:3.12.2-slim-bookworm
 
+RUN apt-get update && apt-get install -y libgl1 libglib2.0-0 \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /inference
+
 COPY ./requirements_run.txt ./requirements.txt
 RUN pip install -r requirements.txt
-
 COPY --from=build /SG/*.onnx ./
+
+COPY ./beatles-abbeyroad.jpg ./demo.py ./
+
+CMD bash

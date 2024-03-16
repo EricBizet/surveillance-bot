@@ -1,1 +1,1 @@
-docker run -it sf:latest
+docker run -it sg:latest
